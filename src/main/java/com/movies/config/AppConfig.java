@@ -1,6 +1,7 @@
 package com.movies.config;
 
 import com.movies.utils.LocalVarsHelper;
+import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,5 +18,10 @@ public class AppConfig {
                 .localFileSeparator(fs)
                 .staticDirectory(userDir + fs + "src" + fs + "main" + fs + "resources" + fs + "static" + fs)
                 .build();
+    }
+
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
     }
 }
