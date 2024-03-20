@@ -28,6 +28,9 @@ public class Client {
     @Column(name = "has_voted")
     private Boolean hasVoted;
 
+    @Column(name = "movie_voted_id")
+    private Long movieVotedId;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -42,11 +45,18 @@ public class Client {
 
     @Override
     public String toString() {
+        String movieVoted;
+        if(this.movieVotedId == null) {
+            movieVoted = "This user has not yet voted for any movie";
+        } else {
+            movieVoted = "Movie voted id: " + this.movieVotedId;
+        }
         return "Client{" +
                 "idClient=" + idClient +
                 ", fullName='" + fullName + '\'' +
                 ", typeOfSubscription='" + typeOfSubscription + '\'' +
                 ", hasVoted=" + hasVoted +
+                ", MovieVotedId=" + movieVoted +
                 '}';
     }
 }

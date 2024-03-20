@@ -23,7 +23,7 @@ public class Movie {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "description", length = 510)
+    @Column(name = "description", length = 1024)
     private String description;
 
     @Column(name = "release_year")
