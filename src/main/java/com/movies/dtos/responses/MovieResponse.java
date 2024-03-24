@@ -1,6 +1,5 @@
-package com.movies.dtos;
+package com.movies.dtos.responses;
 
-import com.movies.models.ImageMovie;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

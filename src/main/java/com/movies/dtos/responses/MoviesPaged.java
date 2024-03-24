@@ -1,4 +1,4 @@
-package com.movies.dtos;
+package com.movies.dtos.responses;
 
 import com.movies.utils.PageInfo;
 import lombok.AllArgsConstructor;

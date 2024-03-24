@@ -1,6 +1,6 @@
 package com.movies.services;
 
-import com.movies.dtos.MoviesPaged;
+import com.movies.dtos.responses.MoviesPaged;
 import com.movies.exceptions.DataNotFoundException;
 import com.movies.exceptions.GeneralException;
 import com.movies.exceptions.IncorrectDataBadRequestException;

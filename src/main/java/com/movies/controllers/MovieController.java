@@ -1,6 +1,6 @@
 package com.movies.controllers;
 
-import com.movies.dtos.MoviesPaged;
+import com.movies.dtos.responses.MoviesPaged;
 import com.movies.services.MovieService;
 import com.movies.utils.CustomResponse;
 import com.movies.utils.FilePojo;
@@ -33,7 +33,7 @@ public class MovieController {
     }
 
     @GetMapping("/by-specific-year")
-    public ResponseEntity listAllMoviesBySpecificYear(@RequestParam(name = "pageNumber", required = false, defaultValue = "1") int pageNumber,
+    public ResponseEntity<?> listAllMoviesBySpecificYear(@RequestParam(name = "pageNumber", required = false, defaultValue = "1") int pageNumber,
                                                       @RequestParam(name = "pageSize", required = false, defaultValue = "20") int pageSize,
                                                       @RequestParam(name = "year", required = false, defaultValue = "2023") String year) {
         Optional<MoviesPaged> movies = service.findAllPagedMoviesBySpecificReleaseYear(pageNumber, pageSize, "single_release_year", year);
