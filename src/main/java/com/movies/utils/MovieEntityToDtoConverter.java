@@ -1,7 +1,7 @@
 package com.movies.utils;
 
 
-import com.movies.dtos.MovieResponse;
+import com.movies.dtos.responses.MovieResponse;
 import com.movies.models.Movie;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
