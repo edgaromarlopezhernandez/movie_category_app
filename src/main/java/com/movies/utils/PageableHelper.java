@@ -5,21 +5,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class PageableHelper {
     public PageInfo helper (Integer pageNumber, Integer pageSize, Long records){
-        System.out.println("In helper=============================================");
         PageInfo pageInfo = new PageInfo();
         if(pageSize < 1){
             pageSize = 1;
         }
-        if(pageSize > 50){
-            pageSize = 50;
+        if(pageSize > 30){
+            pageSize = 30;
         }
         Double totalPages = Math.ceil((records*1.0) / pageSize);
-        System.out.println("totalPages: " + totalPages);
-        System.out.println("pageNumber > totalPages:::::: " + String.valueOf(pageNumber > totalPages));
+
         if(pageNumber > totalPages){
             pageNumber = totalPages.intValue();
-            System.out.println("pageNumber" + pageNumber);
         }
+
         pageNumber = pageNumber - 1;
         if(pageNumber < 1){
             pageNumber = 0;
@@ -32,13 +30,11 @@ public class PageableHelper {
             nextPage = pageNumber + 2;
         }
         Integer previousPage;
-        System.out.println("Previous page calculation: ");
         if(pageNumber < 1){
             previousPage = totalPages.intValue();
         }else{
             previousPage = pageNumber;
         }
-        System.out.println("ppc: " + previousPage);
         pageInfo.setTotalRecords(records);
         pageInfo.setCurrentPage(pageNumber + 1);
         pageInfo.setTotalPages(totalPages.longValue());
