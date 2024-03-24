@@ -57,6 +57,7 @@ public class MovieService implements MovieInterface {
         }
     }
 
+    @Transactional
     private Optional<MoviesPaged> fetchAllMoviesData(Integer pageNumber, Integer pageSize, Long records, String order, String year){
         try{
             System.out.println("Test 2#####################################################################3");

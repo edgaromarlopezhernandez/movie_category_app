@@ -41,12 +41,12 @@ public class GenericExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(GeneralException.class)
     public ResponseEntity<Object> handleGeneralExceptions(GeneralException exception, WebRequest request){
-        System.out.println("************************ERROR GENERAL EXCEPTION************************");
+        log.error("************************ERROR GENERAL EXCEPTION************************");
         log.error(exception.getMessage());
         log.error(String.valueOf(exception.getStackTrace()));
         log.error(request.getDescription(true));
         log.error(request.getContextPath());
-        System.out.println("************************ERROR GENERAL EXCEPTION************************");
+        log.error("************************ERROR GENERAL EXCEPTION************************");
         return new CustomResponse(false, "[General exception]Internal Server Error", null).createResponse(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
