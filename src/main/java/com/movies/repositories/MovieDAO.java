@@ -11,4 +11,10 @@ import org.springframework.stereotype.Repository;
 public interface MovieDAO extends JpaRepository<Movie, Long> {
     @Query(value = "select * from movies m group by m.release_year", nativeQuery = true)
     public Page<Movie> findAllMoviesGroupedByReleaseYear(Pageable pageable);
+
+    @Query(value = "select count(*) from movies m where YEAR(m.release_year) = :year", nativeQuery = true)
+    public Long countBySpecificReleaseYear(Integer year);
+
+    @Query(value = "select * from movies m where YEAR(m.release_year) = :year group by m.release_year", nativeQuery = true)
+    public Page<Movie> findAllMoviesGroupedBySpecificReleaseYear(Pageable pageable, Integer year);
 }

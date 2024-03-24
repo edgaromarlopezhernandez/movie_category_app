@@ -15,7 +15,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 @RestController
 public class GenericExceptionHandler extends ResponseEntityExceptionHandler {
-    //TODO: ADD LOG STRATEGY IN DATABASE
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleAllExceptions(Exception exception, WebRequest request){
@@ -28,11 +27,11 @@ public class GenericExceptionHandler extends ResponseEntityExceptionHandler {
         return new CustomResponse(false, "[Exception]Internal Server Error", null).createResponse(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-   /* @ExceptionHandler(IncorrectDataBadRequestException.class)
+    @ExceptionHandler(IncorrectDataBadRequestException.class)
     public ResponseEntity<Object> handleBadRequestExceptions(IncorrectDataBadRequestException exception, WebRequest request){
         log.info(request.getDescription(true), request.getContextPath(), request.getHeaderNames());//Check out all request options
         return new CustomResponse(false, exception.getMessage(), null).createResponse(HttpStatus.BAD_REQUEST);
-    }*/
+    }
 
     @ExceptionHandler(DataNotFoundException.class)
     public ResponseEntity<Object> handleNotFoundExceptions(DataNotFoundException exception, WebRequest request){
