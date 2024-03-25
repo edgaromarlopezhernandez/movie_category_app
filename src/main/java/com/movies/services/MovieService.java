@@ -45,8 +45,6 @@ public class MovieService implements MovieInterface {
             if(records == 0){
                 return Optional.empty();
             }
-            System.out.println("Test 1*********************************************************************");
-            System.out.println(records);
             return fetchAllMoviesData(pageNumber, pageSize, records, order, null);
         }catch (DataNotFoundException | IncorrectDataBadRequestException exception){
             log.info("INFO MESSAGE=> " + exception.getMessage(), exception);
@@ -60,12 +58,7 @@ public class MovieService implements MovieInterface {
     @Transactional
     private Optional<MoviesPaged> fetchAllMoviesData(Integer pageNumber, Integer pageSize, Long records, String order, String year){
         try{
-            System.out.println("Test 2#####################################################################3");
-            System.out.println("pageNumber: " + pageNumber);
-            System.out.println("pageSize: " + pageSize);
-            System.out.println("records: " + records);
             PageInfo pageInfo = pageableHelper.helper(pageNumber, pageSize, records);
-            System.out.println("pageInfo:  " + pageInfo);
             Pageable page = PageRequest.of(pageInfo.getCurrentPage() -1, pageInfo.getPageSize());
             List<Movie> movies;
             order = order.toLowerCase();
@@ -93,7 +86,7 @@ public class MovieService implements MovieInterface {
                             .toList();
                     break;
                 default:
-                    throw new IncorrectDataBadRequestException("Movies can not be ordered by: " + order + " . Please use a valid value like: release_year or votes");
+                    throw new IncorrectDataBadRequestException("Movies can not be ordered by: " + order + ". Please use a valid value like: release_year or votes");
             }
 
             MoviesPaged moviesPaged = MoviesPaged.builder()
@@ -119,8 +112,6 @@ public class MovieService implements MovieInterface {
             if(records == 0){
                 return Optional.empty();
             }
-            System.out.println("Test 44postman*********************************************************************");
-            System.out.println(records);
             return fetchAllMoviesData(pageNumber, pageSize, records, order, year);
         }catch (DataNotFoundException | IncorrectDataBadRequestException exception){
             log.info("INFO MESSAGE=> " + exception.getMessage(), exception);
@@ -150,9 +141,6 @@ public class MovieService implements MovieInterface {
         Movie movie = movieDAO.findById(Long.valueOf(movieId))
                 .orElseThrow(() -> new DataNotFoundException("Movie not found for id: " + movieId));
         Optional<ImageMovie> optionalImageMovie = Optional.of(movie.getImage());
-        if(optionalImageMovie.isEmpty()) {
-            throw new DataNotFoundException("Image not found for movie with id: " + movieId);
-        }
         return FilePojo
                 .builder()
                 .name(movie.getName())
