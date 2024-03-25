@@ -3,7 +3,6 @@ package com.movies.models;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 @Entity

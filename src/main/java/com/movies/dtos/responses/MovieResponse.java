@@ -5,13 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
-public class MovieResponse {
+public class MovieResponse implements Serializable {
     private Long idMovie;
     private String name;
     private String description;

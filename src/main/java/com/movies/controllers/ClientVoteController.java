@@ -26,4 +26,10 @@ public class ClientVoteController {
         else
             return new CustomResponse<>(false,"Please vote down before make a vote up",null).createResponse(HttpStatus.NOT_FOUND);
     }
+
+    @PostMapping("/down")
+    public ResponseEntity<?> voteDown(@RequestBody VoteDataRequest payload) {
+        Boolean response = service.voteDown(payload);
+        return new CustomResponse<>(true, "Voted down for movie with id: " + payload.getMovieId() + " by client with id: " + payload.getClientId(), response).createResponse();
+    }
 }
