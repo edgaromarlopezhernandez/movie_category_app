@@ -4,6 +4,10 @@ import com.movies.dtos.responses.MoviesPaged;
 import com.movies.services.MovieService;
 import com.movies.utils.CustomResponse;
 import com.movies.utils.FilePojo;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.Optional;
 
+@Tag(name = "Movies", description = "The movies API")
 @RestController
 @RequestMapping("/movies")
 public class MovieController {
@@ -21,6 +26,12 @@ public class MovieController {
     //https://codebeautify.org/base64-to-image-converter
     @Autowired
     private MovieService service;
+    @Operation(
+            summary = "Fetch all movies sorted by release_year or votes.",
+            description = "Fetches all movie entities sorted by 2 different order type as a query parameter: votes / release_year.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "successful operation")
+    })
     @GetMapping
     public ResponseEntity<?> listAllMoviesByReleaseYear(@RequestParam(name = "pageNumber", required = false, defaultValue = "1") int pageNumber,
                                                         @RequestParam(name = "pageSize", required = false, defaultValue = "20") int pageSize,
@@ -32,6 +43,12 @@ public class MovieController {
             return new CustomResponse<>(true, "Success", movies).createResponse();
     }
 
+    @Operation(
+            summary = "Fetch all movies sorted by a specific release_year.",
+            description = "Fetches all movie entities sorted by a specific release_year.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "successful operation")
+    })
     @GetMapping("/by-specific-year")
     public ResponseEntity<?> listAllMoviesBySpecificYear(@RequestParam(name = "pageNumber", required = false, defaultValue = "1") int pageNumber,
                                                       @RequestParam(name = "pageSize", required = false, defaultValue = "20") int pageSize,
@@ -43,6 +60,12 @@ public class MovieController {
             return new CustomResponse<>(true, "Success", movies).createResponse();
     }
 
+    @Operation(
+            summary = "Fetch an image by movie id.",
+            description = "Fetches an image in a attachment by movie id.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "successful operation")
+    })
     @GetMapping("/{movieId}")
     public void listSpecificMovie(HttpServletResponse response, @PathVariable String movieId) throws Exception {
             FilePojo filePojo = service.getImageById(movieId);
