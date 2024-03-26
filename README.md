@@ -9,16 +9,16 @@ The points of the business requirements are perfectly met, which are:
 - List all movie pictures order by release year.
 - List all movie pictures order by votes.
 - List all movie pictures order by specific release year.
-- Vote up a movie
-- Vote down a movie
-- Get movie image by id
+- Vote up a movie.
+- Vote down a movie.
+- Get movie image by id.
 
 ## TECHNICAL REQUIREMENTS
 **The Java version used: 17**
 
 **Build automation tool: Maven**
 
-**Framework selected: Spring Boot 3.2.3**.
+**Framework selected: Spring Boot 3.2.3**
 
 #### DATABASE
 
