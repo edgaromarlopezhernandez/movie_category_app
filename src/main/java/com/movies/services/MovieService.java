@@ -136,6 +136,7 @@ public class MovieService implements MovieInterface {
         }
     }
 
+    @Transactional
     public FilePojo getImageById(String movieId) {
         checkIfStringIsAValidNumber(movieId);
         Movie movie = movieDAO.findById(Long.valueOf(movieId))
