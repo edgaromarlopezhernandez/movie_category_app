@@ -44,7 +44,7 @@ My decision for this project was to implement an H2 in-memory database. This way
 
 ### Spring boot run: `mvn clean install spring-boot:run`
 Runs the app in development mode.<br />
-API: http://localhost:8087/api/v1/ to access the api endpoints.
+API: http://localhost:8088/api/v1/ to access the api endpoints.
 
 A postman collection is provided in resources/static folder.
 
